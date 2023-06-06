@@ -4,7 +4,6 @@
 }
 
 .order-wrapper {
-    margin-bottom: 134px;
     padding: 216px 0 300px;
     height: 820px;
     background: url("../public/assets/raster/cleaning.jpg") center center no-repeat;
@@ -49,6 +48,49 @@
                 line-height: 2.2rem;
                 color: #fff;
             }
+        }
+    }
+}
+
+.posts-wrap {
+    margin-bottom: 134px;
+    padding: 66px 0 134px;
+    background: #25B2B4;
+
+    .title-text {
+        padding-bottom: 40px;
+        color: #fff;
+    }
+
+    .posts-container {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .reviews-wrap {
+        margin-bottom: 40px;
+    }
+
+    .action-kit {
+        margin-inline: auto;
+        display: flex;
+        gap: 20px;
+
+        &__link {
+            font-weight: 600;
+            font-size: 1.6rem;
+            line-height: 2.2rem;
+            border: 1px solid #FFFFFF;
+            border-radius: 4px;
+            color: #FFFFFF;
+        }
+
+        &__own-review {
+            padding: 22px 36px;
+        }
+
+        &__all-reviews {
+            padding: 22px 74px;
         }
     }
 }
