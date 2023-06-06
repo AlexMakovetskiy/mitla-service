@@ -1,0 +1,26 @@
+.review-page-wrap {
+    padding: 50px 100px 74px;
+    min-height: 50vh;
+
+    .title-text {
+        padding-bottom: 70px;
+    }
+
+    .review-container {
+        max-width: none;
+        color: var(--color-text-theme);
+
+        .post-data {
+            &__user-photo {
+                padding-right: 30px;
+                width: 200px;
+                height: 200px;
+                border-radius: initial;
+            }
+
+            .user-data__post-date {
+                color: var(--color-text-theme);
+            }
+        }
+    }
+}

@@ -7,8 +7,13 @@
     .burger-action {
         max-height: 60px;
         padding: 18px 14px;
-        background: #ECECEC;
+        background: var(--color-grey-border);
         border-radius: 4px;
+
+        &__logo {
+            width: 25px;
+            height: 25px;
+        }
     }
 
     .contacts {
@@ -17,7 +22,7 @@
         justify-content: center;
         align-items: center;
         gap: 10px;
-        background: #F25E57;
+        background: var(--color-tomato-background);
         border-radius: 4px;
 
         &__telephone {
@@ -25,7 +30,7 @@
             font-weight: 700;
             font-size: 2rem;
             line-height: 2.2rem;
-            color: #fff;
+            color: var(--color-white-text);
         }
     }
 
@@ -45,7 +50,7 @@
             &__logo-container {
                 height: 38px;
                 width: 38px;
-                background: #ECECEC;
+                background: var(--color-grey-border);
                 border-radius: 2px;
             }
 
@@ -64,11 +69,11 @@
         display: flex;
         align-items: center;
         gap: 14px;
-        background: #25B2B4;
+        background: var(--color-teal-background);
         border-radius: 4px;
 
         &__title {
-            color: #fff;
+            color: var(--color-white-text);
             font-weight: 600;
             font-size: 1.4rem;
             line-height: 2.2rem;
@@ -77,7 +82,7 @@
 
     .profile {
         padding: 14px;
-        background: #ECECEC;
+        background: var(--color-grey-border);
         border-radius: 4px;
     }
 }

@@ -1,13 +1,13 @@
 .footer-wrapper {
     padding: 70px 0 120px;
-    border: 1px solid transparent;
+    border-top: 1px solid var(--color-services-border);
     background: #212121;
     display: grid;
     place-items: center;
-    color: #fff;
+    color: var(--color-white-text);
 
     a {
-        color: #fff;
+        color: var(--color-white-text);
     }
 
     .footer-content {

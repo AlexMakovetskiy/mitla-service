@@ -2,7 +2,7 @@
     margin: 0 40px 40px 0;
     max-width: 650px;
     width: 100%;
-    color: #fff;
+    color: var(--color-background-theme);
 
     .post-data {
         padding-bottom: 20px;
@@ -24,7 +24,7 @@
                 line-height: 2.6rem;
             }
 
-            &__post-date {
+            .user-data__post-date {
                 font-weight: 500;
                 font-size: 1.8rem;
                 line-height: 2.2rem;

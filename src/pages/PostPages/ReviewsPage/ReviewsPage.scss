@@ -1,0 +1,22 @@
+.reviews-page-wrap {
+    .title-text {
+        padding: 50px 0 70px;
+    }
+
+    .reviews-wrap {
+        padding-bottom: 74px;
+
+        .review-list-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+
+            .review-container {
+                color: var(--color-text-theme);
+
+                .user-data__post-date {
+                    color: var(--color-text-theme);
+                }
+            }
+        }
+    }
+}
