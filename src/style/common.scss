@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+html {
+    color-scheme: var(--scheme);
+    background-color: var(--color-background-theme);
+    color: var(--color-text-theme);
+}
+
+body {
+    padding: 0;
+    font-family: 'Montserrat', Geneva, Verdana, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.large-container {
+    width: 100%;
+    max-width: 1920px;
+    margin: 0 auto;
+}
+
+.medium-container {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.small-container {
+    width: 100%;
+    max-width: 956px;
+    margin: 0 auto;
+}
+
+:root {
+    --color-text: #212121;
+    --color-lite-grey: #8f96a3;
+    --color-white-text: #fff;
+    --color-grey-border: #ECECEC;
+    --color-grey-background: #FAFAFA;
+    --color-tomato-background: #F25E57;
+    --color-teal-background: #25B2B4;
+    --color-transparent: transparent;
+}
+
+:root[data-theme="light"] {
+    --scheme: light;
+    --color-text-theme: var(--color-text);
+    --color-background-theme: var(--color-white-text);
+    --color-custom-white: var(--color-text);
+    --color-services-background: var(--color-grey-background);
+    --color-services-border: var(--color-transparent)
+}
+
+:root[data-theme="dark"] {
+    --scheme: dark;
+    --color-text-theme: var(--color-white-text);
+    --color-background-theme: var(--color-text);
+    --color-custom-white: var(--color-lite-grey);
+    --color-services-background: var(--color-text);
+    --color-services-border: var(--color-white-text);
+}

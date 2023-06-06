@@ -1,0 +1,39 @@
+.services-container {
+    padding-bottom: 134px;
+
+    .title-text {
+        text-align: center;
+        padding-bottom: 50px;
+    }
+
+    .services-content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 20px;
+        .service-container {
+            margin-bottom: 28px;
+            padding: 48px 24px 56px;
+            width: 256px;
+            height: 256px;
+            background: var(--color-services-background);
+            border: 1px solid var(--color-services-border);
+            border-radius: 6px;
+            text-align: center;
+
+            &__logo {
+                padding-bottom: 28px;
+                max-height: 88px;
+                max-width: 88px;
+            }
+
+            &__title {
+                max-width: 206px;
+                font-weight: 700;
+                font-size: 1.8rem;
+                line-height: 2.2rem;
+            }
+        }
+    }
+}

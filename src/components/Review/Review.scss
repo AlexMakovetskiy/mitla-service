@@ -1,0 +1,40 @@
+.review-container {
+    margin: 0 40px 40px 0;
+    max-width: 650px;
+    width: 100%;
+    color: var(--color-background-theme);
+
+    .post-data {
+        padding-bottom: 20px;
+        display: flex;
+        gap: 24px;
+        align-items: center;
+
+        &__user-photo {
+            border-radius: 100%;
+            width: 100px;
+            height: 100px;
+        } 
+
+        .user-data {
+            &__name {
+                padding-bottom: 6px;
+                font-weight: 700;
+                font-size: 2rem;
+                line-height: 2.6rem;
+            }
+
+            .user-data__post-date {
+                font-weight: 500;
+                font-size: 1.8rem;
+                line-height: 2.2rem;
+            }
+        }
+    }
+
+    &__content {
+        font-weight: 500;
+        font-size: 1.8rem;
+        line-height: 3rem;
+    }
+}

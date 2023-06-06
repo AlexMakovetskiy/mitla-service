@@ -1,0 +1,41 @@
+.signup-wrap {
+    height: 80vh;
+
+    .title-text {
+        padding: 30px 0 60px;
+    }
+
+    .user-data-wrap {
+        margin: 0 auto 30px;
+        position: relative;
+        max-width: min-content;
+
+        &__email,
+        &__password,
+        &__confirm-password {
+            margin-top: 14px;
+            padding: 6px;
+            width: 250px;
+            font-size: 1.4rem;
+            line-height: 2rem;
+            border: 1px solid var(--color-text);    
+            border-radius: 4px;
+        }
+
+        &__confirm-password {
+            margin-bottom: 70px;
+        }
+
+        &__signin-action {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            background: var(--color-tomato-background);
+            color: var(--color-text);
+            font-size: 1.8rem;
+            line-height: 2.2rem;
+            border-radius: 4px;
+            padding: 10px;
+        }
+    }
+}
