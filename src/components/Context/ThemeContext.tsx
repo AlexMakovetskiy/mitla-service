@@ -1,4 +1,4 @@
-import { ReactNode, createContext, useCallback, useEffect, useState } from 'react';
+import React, { ReactNode, createContext, useCallback, useEffect, useState } from 'react';
 
 interface IThemeContext {
     theme: string
@@ -29,4 +29,6 @@ function ThemeProvider (props: IThemeProvider) {
     );
 }
 
-export {ThemeContext, ThemeProvider};
+React.memo(ThemeProvider);
+
+export {ThemeContext,  ThemeProvider};

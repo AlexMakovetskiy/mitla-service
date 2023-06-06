@@ -1,4 +1,4 @@
-.signin-wrap {
+.signup-wrap {
     height: 80vh;
 
     .title-text {
@@ -11,8 +11,9 @@
         max-width: min-content;
 
         &__email,
-        &__password {
-            margin-bottom: 14px;
+        &__password,
+        &__confirm-password {
+            margin-top: 14px;
             padding: 6px;
             width: 250px;
             font-size: 1.4rem;
@@ -21,7 +22,7 @@
             border-radius: 4px;
         }
 
-        &__password {
+        &__confirm-password {
             margin-bottom: 70px;
         }
 
@@ -37,23 +38,4 @@
             padding: 10px;
         }
     }
-
-    .signup-conteiner {
-        margin-inline: auto;
-        width: 250px;
-        display: flex;
-        justify-content: flex-end;
-        font-size: 1.4rem;
-        line-height: 1.6rem;
-
-        &__title {
-            color: var(--color-text-theme);
-        }
-
-        a {
-            margin-left: 20px;
-            color: var(--color-tomato-background);
-        }
-    }
-
 }
