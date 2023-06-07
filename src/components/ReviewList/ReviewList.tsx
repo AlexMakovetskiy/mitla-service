@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Key, useState } from 'react';
 
-import Review from '../Review/Review';
+import Review from '../review/Review';
 
 import '../../style/reset.scss';
 import '../../style/common.scss';
 import './ReviewList.scss';
 
-function ReviewList (props: any) {
+function ReviewList (props: { reviews: any; elementCount: number; }) {
     const [state, setState] = useState({
         reviews: props.reviews,
         elementCount: props.elementCount,

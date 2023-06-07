@@ -34,6 +34,7 @@ body {
 :root {
     --color-text: #212121;
     --color-lite-grey: #8f96a3;
+    --color-background-shading: rgba(0, 0, 0, 0.2);
     --color-white-text: #fff;
     --color-grey-border: #ECECEC;
     --color-grey-background: #FAFAFA;
@@ -48,7 +49,8 @@ body {
     --color-background-theme: var(--color-white-text);
     --color-custom-white: var(--color-text);
     --color-services-background: var(--color-grey-background);
-    --color-services-border: var(--color-transparent)
+    --color-services-border: var(--color-transparent);
+    --color-menu-btn: var(--color-lite-grey);
 }
 
 :root[data-theme="dark"] {
@@ -58,4 +60,5 @@ body {
     --color-custom-white: var(--color-lite-grey);
     --color-services-background: var(--color-text);
     --color-services-border: var(--color-white-text);
+    --color-menu-btn: var(--color-transparent);
 }

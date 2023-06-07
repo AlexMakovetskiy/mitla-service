@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import Services from '../../components/Services/Services';
-import Title from '../../components/Title/Title';
-import ReviewList from '../../components/ReviewList/ReviewList';
+import Services from '../../components/services/Services';
+import Title from '../../components/title/Title';
+import ReviewList from '../../components/reviewList/ReviewList';
 import data from '../../response_1668708166439.json';
 
 import '../../style/reset.scss'; 
@@ -67,7 +67,7 @@ function Main () {
             <div className="posts-wrap">
                 <Title content="Reviews" fontSize={70} fontWeight={700} lineHeight={76}/>
                 <div className="posts-container medium-container">
-                    <ReviewList reviews={postsData} elementCount="3"/>
+                    <ReviewList reviews={postsData} elementCount={3}/>
                     <div className="action-kit">
                         <Link to={'/notfound'}>
                             <div className="action-kit__link action-kit__own-review">Leave your review →</div>

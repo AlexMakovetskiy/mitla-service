@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 
-import Title from '../../../components/Title/Title';
-import Review from '../../../components/Review/Review';
+import Title from '../../../components/title/Title';
+import Review from '../../../components/review/Review';
 import data from '../../../response_1668708166439.json';
 
 import '../../../style/reset.scss'; 

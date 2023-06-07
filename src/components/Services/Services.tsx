@@ -1,4 +1,4 @@
-import Title from '../Title/Title';
+import Title from '../title/Title';
 
 import '../../style/reset.scss';
 import '../../style/common.scss';
