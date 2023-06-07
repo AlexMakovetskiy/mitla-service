@@ -1,13 +1,35 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import useTheme from '../../hooks/useTheme';
+import Menu from '../menu/Menu';
 
 import '../../style/reset.scss';
 import '../../style/common.scss';
 import './Header.scss';
 
 function Header () {
+    const [isOpenMenu, setOpenMenu] = useState(false);
+    const [userData, setUserData] = useState({
+        userEmail: '',
+        isLogin: false,
+    });
     const theme = useTheme();
+
+    function updateUserInfo () {
+        const storageUserData = JSON.parse(localStorage.getItem('mitla-login') || '{}');
+        return setUserData({
+            userEmail: storageUserData.userEmail,
+            isLogin: storageUserData.isLogin,
+        });
+    }
+
+    function handleMenu () {
+        updateUserInfo();
+        if(isOpenMenu)
+            return setOpenMenu(false);
+        return setOpenMenu(true);
+    }
 
     const themeValue = theme?.handleTheme;
 
@@ -61,16 +83,24 @@ function Header () {
                     <p className="service__title">Assistant housework</p>
                 </div>
             </div>
+            <Link to={'/search'}>
+                <div className="search-link-wrap">
+                    <img src="/assets/vector/header/loupe.svg" alt="loupe" className="search-link-wrap__logo"/>
+                </div>
+            </Link>
             <a className="partners" href="https://www.bing.com/" target="_blank" rel="noreferrer">
                 <img className="partners__logo" src="/assets/vector/header/partners.svg" alt="partners" />
                 <p className="partners__title">Partners</p>
             </a>
-            <div className="profile">
-                <Link to={'/authorization'}>
-                    <img src="/assets/vector/header/user.svg" alt="profile logo" className="profile__logo"/>
-                </Link>
-            </div>
+            <button className="profile" onClick={handleMenu}>
+                <img src="/assets/vector/header/user.svg" alt="profile logo" className="profile__logo"/>
+            </button>
+            {
+                !!isOpenMenu && 
+                <Menu userEmail={userData.userEmail} isLogin={userData.isLogin}/>
+            } 
         </header>
+
     );
 }
 

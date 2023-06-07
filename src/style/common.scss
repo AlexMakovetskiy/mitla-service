@@ -34,12 +34,15 @@ body {
 :root {
     --color-text: #212121;
     --color-lite-grey: #8f96a3;
+    --color-background-shading: rgba(0, 0, 0, 0.2);
     --color-white-text: #fff;
     --color-grey-border: #ECECEC;
     --color-grey-background: #FAFAFA;
     --color-tomato-background: #F25E57;
     --color-teal-background: #25B2B4;
     --color-transparent: transparent;
+    --image-heart-light: url('../../public/assets/vector/addFavorite/emptyHeartLogoDark.svg');
+    --image-heart-dark: url('../../public/assets/vector/addFavorite/emptyHeartLogoLight.svg');
 }
 
 :root[data-theme="light"] {
@@ -48,7 +51,9 @@ body {
     --color-background-theme: var(--color-white-text);
     --color-custom-white: var(--color-text);
     --color-services-background: var(--color-grey-background);
-    --color-services-border: var(--color-transparent)
+    --color-services-border: var(--color-transparent);
+    --color-menu-btn: var(--color-lite-grey);
+    --image-heart-theme: var(--image-heart-light);
 }
 
 :root[data-theme="dark"] {
@@ -58,4 +63,6 @@ body {
     --color-custom-white: var(--color-lite-grey);
     --color-services-background: var(--color-text);
     --color-services-border: var(--color-white-text);
+    --color-menu-btn: var(--color-transparent);
+    --image-heart-theme: var(--image-heart-dark);
 }

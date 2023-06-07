@@ -1,0 +1,22 @@
+
+.favorite-post-wrap {
+    height: 26px;
+    width: 26px;
+
+    .action-deactivated {
+        background: var(--image-heart-theme) center center no-repeat;
+
+        .heart-logo {
+            visibility: hidden;
+        }
+    }
+
+    .action-activated {
+        background: transparent;
+
+        .heart-logo {
+            visibility: visible;
+        }
+    }
+}
+

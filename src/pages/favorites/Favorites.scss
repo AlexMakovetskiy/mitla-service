@@ -1,0 +1,41 @@
+.favorites-wrap {
+    min-height: 80vh;
+
+    .title-text {
+        padding: 30px 0 60px;
+    }
+
+    &__posts-wrap {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+        justify-content: start;
+
+        .review-container {
+            padding-top: 30px;
+            max-height: min-content;
+            color: var(--color-text-theme);
+            border-top: 1px solid var(--color-text-theme) ;
+
+            .user-data__post-date {
+                color: var(--color-text-theme);
+            }
+        }
+
+        .review-container:first-child {
+            border-top: 1px solid transparent;
+        }
+        
+    }
+
+    .empty-favorites-wrapper {
+        text-align: center;
+
+        &__title {
+            font-size: 3.2rem;
+            color: var(--color-text-theme);
+        }
+    }
+
+}

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 
-import Title from '../../../components/Title/Title';
+import Title from '../../../components/title/Title';
 
 import '../../../style/reset.scss'; 
 import '../../../style/common.scss'; 
@@ -33,11 +33,16 @@ function SignIn () {
         if (!storageUsers.length)
             return navigator('/notfaund');
         for (const storageUser of storageUsers) {
-            if (storageUser.email === state.email && storageUser.password === state.password)
+            if (storageUser.email === state.email && storageUser.password === state.password) {
+                const userData = {
+                    userEmail: state.email,
+                    isLogin: true,
+                };
+                localStorage.setItem('mitla-login', JSON.stringify(userData));
                 return navigator('/success'); 
+            }
         }
         return navigator('/notfound');;
-
     }
 
     return (

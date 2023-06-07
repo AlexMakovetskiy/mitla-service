@@ -1,18 +1,21 @@
 import { useParams } from 'react-router-dom';
 
-import Title from '../../../components/Title/Title';
-import Review from '../../../components/Review/Review';
-import data from '../../../response_1668708166439.json';
+import useSelectorTyped from '../../../hooks/useSelectorTyped';
+
+import Title from '../../../components/title/Title';
+import Review from '../../../components/review/Review';
+import reviewListSelector from '../../../store/gettingReviews/ReviewsSelector';
 
 import '../../../style/reset.scss'; 
 import '../../../style/common.scss';
 import './ReviewPage.scss';
 
-const postsData = data.results;
 
 function ReviewPage () {
     const params = useParams();
-    const currentUserData = postsData.find(userData => userData.id === Number(params.id));
+    const reviewList = useSelectorTyped(reviewListSelector);
+    const currentUserData = reviewList.find(userData => userData.id === Number(params.id));
+
 
     return (
         <div className="review-page-wrap medium-container">
