@@ -11,6 +11,7 @@ import SignUp from './pages/authorization/signUp/SignUp';
 import Menu from './components/menu/Menu';
 import ReviewPage from './pages/postPages/reviewPage/ReviewPage';
 import ReviewsPage from './pages/postPages/reviewsPage/ReviewsPage'; 
+import SearchPage from './pages/searchPage/SearchPage';
 import NotFound from './pages/notFound/NotFound';
 
 import './style/reset.scss';
@@ -28,10 +29,12 @@ class App extends React.Component {
                             <Route path="/" element={<Main/>}></Route>
                             <Route path="/authorization" element={<SignIn/>}></Route>
                             <Route path="/signup" element={<SignUp/>}></Route>
-                            <Route path="/menu" element={<Menu userEmail="userEmail" isLogin={false}/>}></Route>
+                            <Route path="/menu" element={<Menu userEmail="" isLogin={false}/>}></Route>
                             <Route path="/success" element={<Success/>}></Route>
                             <Route path="/allreviews" element={<ReviewsPage/>}></Route>
                             <Route path="/review/:id" element={<ReviewPage/>}></Route>
+                            <Route path="/search" element={<SearchPage searchLine=""/>}></Route>
+
                             <Route path="/*" element={<NotFound/>}></Route>
                         </Routes>
                         <Footer/>

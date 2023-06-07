@@ -37,7 +37,7 @@
     .offers {
         display: flex;
         justify-content: space-between;
-        gap: 28px;
+        gap: 18px;
         align-items: center;
 
         .service {
@@ -63,6 +63,19 @@
         }
 
     }
+
+    .search-link-wrap {
+        max-height: 60px;
+        padding: 18px 14px;
+        background: var(--color-grey-border);
+        border-radius: 4px;
+
+        &__logo {
+            width: 25px;
+            height: 25px;
+        }
+    }
+
 
     .partners {
         padding: 14px 22px;

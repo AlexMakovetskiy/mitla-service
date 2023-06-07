@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import useTheme from '../../hooks/useTheme';
@@ -16,17 +16,16 @@ function Header () {
     });
     const theme = useTheme();
 
-    useEffect(() => {
-        (()=> {
-            const storageUserData = JSON.parse(localStorage.getItem('mitla-login') || '{}');
-            setUserData({
-                userEmail: storageUserData.userEmail,
-                isLogin: storageUserData.isLogin,
-            });
-        })();
-    }, []);
+    function updateUserInfo () {
+        const storageUserData = JSON.parse(localStorage.getItem('mitla-login') || '{}');
+        return setUserData({
+            userEmail: storageUserData.userEmail,
+            isLogin: storageUserData.isLogin,
+        });
+    }
 
     function handleMenu () {
+        updateUserInfo();
         if(isOpenMenu)
             return setOpenMenu(false);
         return setOpenMenu(true);
@@ -84,6 +83,11 @@ function Header () {
                     <p className="service__title">Assistant housework</p>
                 </div>
             </div>
+            <Link to={'/search'}>
+                <div className="search-link-wrap">
+                    <img src="/assets/vector/header/loupe.svg" alt="loupe" className="search-link-wrap__logo"/>
+                </div>
+            </Link>
             <a className="partners" href="https://www.bing.com/" target="_blank" rel="noreferrer">
                 <img className="partners__logo" src="/assets/vector/header/partners.svg" alt="partners" />
                 <p className="partners__title">Partners</p>
