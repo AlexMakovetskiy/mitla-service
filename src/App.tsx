@@ -1,5 +1,5 @@
-import React from 'react';
 import { Route,  Routes, BrowserRouter} from 'react-router-dom';
+import { Provider } from 'react-redux';
 
 import { ThemeProvider } from './components/context/ThemeContext';
 import Header from './components/header/Header';
@@ -13,16 +13,17 @@ import ReviewPage from './pages/postPages/reviewPage/ReviewPage';
 import ReviewsPage from './pages/postPages/reviewsPage/ReviewsPage'; 
 import SearchPage from './pages/searchPage/SearchPage';
 import NotFound from './pages/notFound/NotFound';
+import { store } from './store';
 
 import './style/reset.scss';
 import './style/common.scss';
 import './App.scss';
 
-class App extends React.Component {
-    render () {
-        return (
-            <BrowserRouter>
-                <ThemeProvider>
+function App () {
+    return (
+        <BrowserRouter>
+            <ThemeProvider>
+                <Provider store={store}>
                     <div className="mitla-wrapper">
                         <Header/>
                         <Routes>
@@ -34,15 +35,14 @@ class App extends React.Component {
                             <Route path="/allreviews" element={<ReviewsPage/>}></Route>
                             <Route path="/review/:id" element={<ReviewPage/>}></Route>
                             <Route path="/search" element={<SearchPage searchLine=""/>}></Route>
-
                             <Route path="/*" element={<NotFound/>}></Route>
                         </Routes>
                         <Footer/>
                     </div>
-                </ThemeProvider>
-            </BrowserRouter>
-        );
-    }
+                </Provider>
+            </ThemeProvider>
+        </BrowserRouter>
+    );
 }
 
 export default App;
