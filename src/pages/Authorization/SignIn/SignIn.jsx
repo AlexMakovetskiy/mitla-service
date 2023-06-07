@@ -39,7 +39,6 @@ function SignIn () {
                     isLogin: true,
                 };
                 localStorage.setItem('mitla-login', JSON.stringify(userData));
-                console.log(userData);
                 return navigator('/success'); 
             }
         }

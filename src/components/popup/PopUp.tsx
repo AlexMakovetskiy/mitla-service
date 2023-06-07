@@ -1,18 +1,19 @@
-import { useSelector, useDispatch } from 'react-redux/es/exports';
+import useDispatchTyped from '../../hooks/useDispatchTyped';
+import useSelectorTyped from '../../hooks/useSelectorTyped';
 
-import { openingPopupSelector } from '../../store/selectors'; 
-import { openPopupAction } from '../../store/actions';
+import openingPopupSelector from '../../store/openPopup/OpeningPopupSelector'; 
+import { openPopup } from '../../store/openPopup/PopupSlice';
 
 import '../../style/reset.scss';
 import '../../style/common.scss';
 import './PopUp.scss';
 
 function PopUp (props: { picture: string | undefined; }) {
-    const isOpenPopup = useSelector(openingPopupSelector);
-    const dispatch = useDispatch();
+    const isOpenPopup = useSelectorTyped(openingPopupSelector);
+    const dispatch = useDispatchTyped();
 
     function handleClosePopup () {
-        return dispatch(openPopupAction(!!isOpenPopup ? false : true));
+        return dispatch(openPopup(!!isOpenPopup ? false : true));
     }
 
 

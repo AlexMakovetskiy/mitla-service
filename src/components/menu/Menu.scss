@@ -18,6 +18,16 @@
             padding-bottom: 16px;
         }
 
+        &__favorites-action {
+            margin-bottom: 14px; 
+            padding: 6px 10px;
+            color: var(--color-text-theme);
+            font-size: 1.6rem;
+            line-height: 1.8rem;
+            border: 1px solid var(--color-text-theme);
+            border-radius: 4px;
+        }
+
         .user-data-container {
             padding-bottom: 10px;
             width: 100%;

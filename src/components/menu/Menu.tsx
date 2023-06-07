@@ -13,6 +13,7 @@ interface IMenuProps {
 
 function Menu ({userEmail = 'You are no login!', isLogin = false}: IMenuProps) {
     const navigator = useNavigate();
+
     function handleMenuAction () {
         if(!!isLogin) {
             localStorage.removeItem('mitla-login');
@@ -21,11 +22,18 @@ function Menu ({userEmail = 'You are no login!', isLogin = false}: IMenuProps) {
         return navigator('/authorization');
 
     }
+
+    function handleFavoritesLink () {
+        if (!isLogin)
+            return navigator('/authorization');
+        return navigator('/favorites');
+    }
     
     return (
         <nav className="menu-background">
             <div className="menu-wrap">
                 <Title content="Menu" fontSize="28" lineHeight="30" fontWeight="500" />
+                <button className="menu-wrap__favorites-action" onClick={handleFavoritesLink}>Favorites</button>
                 <div className="user-data-container">
                     <p className="user-data-container__subtitle">{userEmail}</p>
                     <button className="menu-action" onClick={handleMenuAction}>

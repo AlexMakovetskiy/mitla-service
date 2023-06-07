@@ -1,35 +1,44 @@
 import { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+
+import useDispatchTyped from '../../hooks/useDispatchTyped';
+import useSelectorTyped from '../../hooks/useSelectorTyped';
+
+import { IReview } from '../../interfaces/pages/Main';
 
 import { USER_PHOTO_BASE_USR } from '../../helpers/Review';
 import PopUp from '../popup/PopUp';
-import { openingPopupSelector, setPictureSelector } from '../../store/selectors';
-import { openPopupAction, setPictureAction } from '../../store/actions';
+import FavoritePostAction from '../favoritePostAction/FavoritePostAction';
+import { openPopup } from '../../store/openPopup/PopupSlice';
+import { setPicture } from '../../store/settingPicture/SettingPictureSlice';
+import openingPopupSelector from '../../store/openPopup/OpeningPopupSelector';
+import setPictureSelector from '../../store/settingPicture/SettingPictureSelector';
 
 import '../../style/reset.scss';
 import '../../style/common.scss';
 import './Review.scss';
 
 function Review (props: any) {
-    const dispatch = useDispatch();
-    const isOpenPopup = useSelector(openingPopupSelector);
-    const userPhoto = useSelector(setPictureSelector);
+    const dispatch = useDispatchTyped();
+    const isOpenPopup = useSelectorTyped(openingPopupSelector);
+    const userPhoto = useSelectorTyped(setPictureSelector);
     const params = useParams();
 
     useEffect(() => {
         if(params.id)
-            dispatch(setPictureAction(props.data.image));
+            dispatch(setPicture(props.data.image));
     }, [dispatch, params.id, props.data.image]);
 
-    const reviewInfo = {
+    const reviewInfo: IReview = {
         title: props.data.title,
         date: props.data.date,
         text: props.data.text,
         image: props.data.image,
         id: props.data.id,
+        lesson_num: props.data.lesson_num,
+        author: props.data.author,
     };
-
+    
     let imageSource = reviewInfo.image;
 
     if (!imageSource) 
@@ -38,7 +47,7 @@ function Review (props: any) {
     function openPreview () {
         if (!params.id)
             return null;
-        return dispatch(openPopupAction(!isOpenPopup ? true : false)); 
+        return dispatch(openPopup(!isOpenPopup ? true : false)); 
     }
     
     return (
@@ -51,6 +60,7 @@ function Review (props: any) {
                         <p className="user-data__post-date">{reviewInfo.date}</p>
                     </Link>
                 </div>
+                <FavoritePostAction postData={reviewInfo}/>
             </div>
             <p className="review-container__content">{reviewInfo.text}</p>
             {

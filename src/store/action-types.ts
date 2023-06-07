@@ -1,4 +1,0 @@
-const OPEN_POPUP = 'OPEN_POPUP';
-const SET_PICTURE = 'SET_PICTURE';
-
-export { OPEN_POPUP, SET_PICTURE };

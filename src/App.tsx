@@ -12,6 +12,7 @@ import Menu from './components/menu/Menu';
 import ReviewPage from './pages/postPages/reviewPage/ReviewPage';
 import ReviewsPage from './pages/postPages/reviewsPage/ReviewsPage'; 
 import SearchPage from './pages/searchPage/SearchPage';
+import Favorites from './pages/favorites/Favorites';
 import NotFound from './pages/notFound/NotFound';
 import { store } from './store';
 
@@ -35,6 +36,7 @@ function App () {
                             <Route path="/allreviews" element={<ReviewsPage/>}></Route>
                             <Route path="/review/:id" element={<ReviewPage/>}></Route>
                             <Route path="/search" element={<SearchPage searchLine=""/>}></Route>
+                            <Route path="/favorites" element={<Favorites/>}></Route>
                             <Route path="/*" element={<NotFound/>}></Route>
                         </Routes>
                         <Footer/>

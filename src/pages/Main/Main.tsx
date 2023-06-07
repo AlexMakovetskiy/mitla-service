@@ -1,21 +1,33 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
+import { PROJECT_BASE_URL } from '../../helpers/Main';
 import Services from '../../components/services/Services';
 import Title from '../../components/title/Title';
 import ReviewList from '../../components/reviewList/ReviewList';
-import data from '../../response_1668708166439.json';
+import { setReviewsData } from '../../store/gettingReviews/ReviewsSlice';
+import useDispatchTyped from '../../hooks/useDispatchTyped';
 
 import '../../style/reset.scss'; 
 import '../../style/common.scss'; 
 import './Main.scss';
 
-const postsData = data.results;
 
 function Main () {
     const [roomCount, setRoomCount] = useState(0);
     const [bathroomCountCount, setBathroomCountCount] = useState(0);
+    const [reviewArray, setReviewArray] = useState([]);
+    const dispatch = useDispatchTyped();
 
+    useEffect(() => {
+        const fetchReviews = async () => {
+            const response = await fetch(PROJECT_BASE_URL);
+            const reviews = await response.json();
+            dispatch(setReviewsData(reviews));
+            return setReviewArray(reviews);
+        };
+        fetchReviews();
+    });
 
 
     function increaseRoomCount () {
@@ -35,6 +47,13 @@ function Main () {
         if (bathroomCountCount !== 0)
             return setBathroomCountCount(bathroomCountCount - 1);
     }
+
+    if (!reviewArray.length) {
+        return (
+            <h1>loading</h1>
+        );
+    }
+
     return (
         <main className="main-page large-container">
             <div className="order-wrapper large-container">
@@ -67,7 +86,7 @@ function Main () {
             <div className="posts-wrap">
                 <Title content="Reviews" fontSize={70} fontWeight={700} lineHeight={76}/>
                 <div className="posts-container medium-container">
-                    <ReviewList reviews={postsData} elementCount={3}/>
+                    <ReviewList reviews={reviewArray} elementCount={3}/>
                     <div className="action-kit">
                         <Link to={'/notfound'}>
                             <div className="action-kit__link action-kit__own-review">Leave your review →</div>
