@@ -1,10 +1,8 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
-interface IPopupState {
-    isOpen: boolean
-}
+import { IPopupInitialState } from '../types/store-types';
 
-const initialStatePopup = {
+const initialStatePopup: IPopupInitialState = {
     isOpen: false,
 };
 
@@ -12,7 +10,7 @@ const popupSlice = createSlice({
     name: 'popup',
     initialState: initialStatePopup,
     reducers: {
-        openPopup(state: IPopupState, action: PayloadAction<boolean>) {
+        openPopup(state: IPopupInitialState, action: PayloadAction<boolean>) {
             state.isOpen = action.payload;
         },
     },

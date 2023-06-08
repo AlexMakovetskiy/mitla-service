@@ -1,10 +1,12 @@
+import { FC } from 'react';
+
 import { ADDRESS_MAPS_URL, PUBLIC_CONTRACT_URL, PRIVACY_POLICY_URL, POLICY_COOKIES_URL } from '../../helpers/Footer';
 
 import '../../style/reset.scss';
 import '../../style/common.scss';
 import './Footer.scss';
 
-function Footer () {
+const Footer: FC = () => {
     return (
         <footer className="footer-wrapper large-container">
             <div className="footer-content medium-container">
@@ -69,6 +71,6 @@ function Footer () {
             </div>
         </footer>
     );
-}
+};
 
 export default Footer;

@@ -1,16 +1,12 @@
+import { FC } from 'react';
+
+import { ITitleProps } from '../../interfaces/components/Props';
 
 import '../../style/reset.scss';
 import '../../style/common.scss';
 import './Title.scss';
 
-interface ITitleProps {
-    fontSize: string | number,
-    lineHeight: string | number,
-    fontWeight: string | number,
-    content: string,
-}
-
-function Title (props: ITitleProps) {
+const Title: FC<ITitleProps> = (props) => {
     function formatSize (defaultSize: number | string) {
         const sizeLetters = defaultSize.toString().split('');
         const lastLetter = sizeLetters.pop();
@@ -28,6 +24,6 @@ function Title (props: ITitleProps) {
     return (
         <p style={titleStyle} className="title-text">{props.content}</p>
     );
-}
+};
 
 export default Title;

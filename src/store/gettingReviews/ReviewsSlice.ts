@@ -1,14 +1,9 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
+import { IReviewsInitialState } from '../types/store-types';
 import { IReview } from '../../interfaces/pages/Main';
 
 import { getReviews } from './ReviewsThunk';
-
-interface IReviewsInitialState {
-    reviews: IReview[],
-    loading: boolean,
-    error: null,
-}
 
 const initialStateReviews: IReviewsInitialState = {
     reviews: [],
@@ -21,13 +16,13 @@ const ReviewListSlice = createSlice({
     initialState: initialStateReviews,
     reducers: {},
     extraReducers (builder) {
-        builder.addCase(getReviews.fulfilled, (state: IReviewsInitialState, action: PayloadAction<any>) => {
+        builder.addCase(getReviews.fulfilled, (state: IReviewsInitialState, action: PayloadAction<IReview[]>) => {
             state.loading = false;
             state.reviews = action.payload;
         });
-        builder.addCase(getReviews.rejected, (state: IReviewsInitialState, action: PayloadAction<any>) => {
+        builder.addCase(getReviews.rejected, (state: IReviewsInitialState, action: PayloadAction<string | unknown>) => {
             state.loading = false;
-            state.error = action.payload.message;
+            state.error = action.payload;
         });
         builder.addCase(getReviews.pending, (state: IReviewsInitialState) => {
             state.loading = true;

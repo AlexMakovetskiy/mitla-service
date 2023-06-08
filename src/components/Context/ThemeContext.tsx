@@ -1,18 +1,11 @@
-import React, { ReactNode, createContext, useCallback, useEffect, useState } from 'react'; 
+import React, { FC, createContext, useCallback, useEffect, useState } from 'react'; 
 
-interface IThemeContext {
-    theme: string
-    handleTheme: () => void
-}
-
-interface IThemeProvider {
-    children: ReactNode;
-}
+import { IThemeContext, IThemeProviderProps } from '../../interfaces/components/Props';
 
 const ThemeContext = createContext<IThemeContext | null>(null);
 
-function ThemeProvider (props: IThemeProvider) {
-    const [theme, setTheme] = useState('light');
+const ThemeProvider: FC<IThemeProviderProps> = (props) => {
+    const [theme, setTheme] = useState<string>('light');
     
     useEffect ( () => {
         document.documentElement.dataset.theme = theme;
@@ -27,7 +20,7 @@ function ThemeProvider (props: IThemeProvider) {
             {props.children}
         </ThemeContext.Provider>
     );
-}
+};
 
 React.memo(ThemeProvider);
 

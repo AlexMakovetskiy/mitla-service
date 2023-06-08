@@ -1,31 +1,31 @@
-import { useState } from 'react';
+import { ChangeEvent, FC, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { API_BASE_URL, API_REGISTRATION_ENDPOINT } from '../../../helpers/Main';
-
+import { ISignUpState } from '../../../interfaces/pages/authorization';
+import { DisableMouseEventType } from '../../../interfaces/pages/Main';
 import Title from '../../../components/title/Title';
+import { API_BASE_URL, API_REGISTRATION_ENDPOINT } from '../../../helpers/Main';
 
 import '../../../style/reset.scss'; 
 import '../../../style/common.scss'; 
 import './SignUp.scss';
 
-function SignUp () {
+const SignUp: FC = () => {
     const navigator = useNavigate();
-    const [state, setState] = useState({
+    const [state, setState] = useState<ISignUpState>({
         email: '',
         password: '',
         confirmPassword: '',
     });
 
-    function handleChange (event: { preventDefault: () => void; target: { name: string; value: string; }; }) {
-        event.preventDefault();
+    function handleChange (event: ChangeEvent<HTMLInputElement>) {
         setState((prevState) => ({
             ...prevState,
             [event.target.name]: event.target.value, 
         }));
     }
 
-    async function signUpAction (event: { preventDefault: () => void; }) {
+    async function signUpAction (event: DisableMouseEventType) {
         event.preventDefault();
         try {
             if (state.password !== state.confirmPassword) {
@@ -62,6 +62,6 @@ function SignUp () {
             </div>
         </section>
     );
-}
+};
 
 export default SignUp;

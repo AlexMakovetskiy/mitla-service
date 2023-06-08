@@ -1,10 +1,12 @@
+import { FC } from 'react';
+
 import Title from '../title/Title';
 
 import '../../style/reset.scss';
 import '../../style/common.scss';
 import './Services.scss';
 
-function Services () {
+const Services: FC = () => {
     return (
         <section className="services-container medium-container">
             <Title content="Our services" fontSize={48} fontWeight={700} lineHeight={60}/>
@@ -40,6 +42,6 @@ function Services () {
             </div>
         </section>
     );
-}
+};
 
 export default Services;

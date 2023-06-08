@@ -1,8 +1,10 @@
-import useSelectorTyped from '../../hooks/useSelectorTyped';
-import useDispatchTyped from '../../hooks/useDispatchTyped';
+import { FC } from 'react';
 
-import { IReview } from '../../interfaces/pages/Main';
+import useAppSelector from '../../hooks/useAppSelector';
+import useAppDispatch from '../../hooks/useAppDispatch';
 
+import { DisableMouseEventType, IReview } from '../../interfaces/pages/Main';
+import { IFavoritePostActionProps } from '../../interfaces/components/Props';
 import favoritePostsSelector from '../../store/favoritePosts/favoritePostsSelector';
 import { setFavoritePost } from '../../store/favoritePosts/favoritePostsSlice';
 
@@ -10,18 +12,18 @@ import '../../style/reset.scss';
 import '../../style/common.scss';
 import './FavoritePostAction.scss';
 
-function FavoritePostAction (props: { postData: IReview }) {
-    const dispatch = useDispatchTyped();
-    const favoritePosts = useSelectorTyped(favoritePostsSelector);
+const FavoritePostAction: FC<IFavoritePostActionProps> = (props) => {
+    const dispatch = useAppDispatch();
+    const favoritePosts = useAppSelector(favoritePostsSelector);
 
-    const postData = props.postData;
+    const postData: IReview = props.postData;
 
-    const isFavoritePost = favoritePosts.find((favoritePost) => { 
-        
+    const isFavoritePost: IReview | undefined= favoritePosts.find((favoritePost) => { 
         return favoritePost.id === postData.id;
     });
 
-    const handleFavoriteAction = () => {
+    const handleFavoriteAction = (event: DisableMouseEventType) => {
+        event.preventDefault();
         return dispatch(setFavoritePost(postData));
     };
     
@@ -32,6 +34,6 @@ function FavoritePostAction (props: { postData: IReview }) {
             </button>
         </div>
     );
-}
+};
 
 export default FavoritePostAction;

@@ -4,6 +4,6 @@ import { store} from '../store';
 
 type StateStore = ReturnType<typeof store.getState>;
 
-const useSelectorTyped: TypedUseSelectorHook<StateStore> = useSelector;
+const useAppSelector: TypedUseSelectorHook<StateStore> = useSelector;
 
-export default useSelectorTyped;
+export default useAppSelector;

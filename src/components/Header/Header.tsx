@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { FC, useState } from 'react';
 import { Link } from 'react-router-dom';
 
+import { DisableMouseEventType } from '../../interfaces/pages/Main';
 import useTheme from '../../hooks/useTheme';
 import Menu from '../menu/Menu';
 
@@ -8,24 +9,12 @@ import '../../style/reset.scss';
 import '../../style/common.scss';
 import './Header.scss';
 
-function Header () {
-    const [isOpenMenu, setOpenMenu] = useState(false);
-    const [userData, setUserData] = useState({
-        userEmail: '',
-        isLogin: false,
-    });
+const Header: FC = () => {
+    const [isOpenMenu, setOpenMenu] = useState<boolean>(false);
     const theme = useTheme();
 
-    function updateUserInfo () {
-        const storageUserData = JSON.parse(localStorage.getItem('mitla-login') || '{}');
-        return setUserData({
-            userEmail: storageUserData.userEmail,
-            isLogin: storageUserData.isLogin,
-        });
-    }
-
-    function handleMenu () {
-        updateUserInfo();
+    function handleMenu (event: DisableMouseEventType) {
+        event.preventDefault();
         if(isOpenMenu)
             return setOpenMenu(false);
         return setOpenMenu(true);
@@ -97,11 +86,11 @@ function Header () {
             </button>
             {
                 !!isOpenMenu && 
-                <Menu userEmail={userData.userEmail} isLogin={userData.isLogin}/>
+                <Menu/>
             } 
         </header>
 
     );
-}
+};
 
 export default Header;

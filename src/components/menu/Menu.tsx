@@ -1,8 +1,10 @@
+import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import useSelectorTyped from '../../hooks/useSelectorTyped';
-import useDispatchTyped from '../../hooks/useDispatchTyped';
+import useAppSelector from '../../hooks/useAppSelector';
+import useAppDispatch from '../../hooks/useAppDispatch';
 
+import { DisableMouseEventType } from '../../interfaces/pages/Main';
 import Title from '../title/Title';
 import { removeUserData } from '../../store/userInfo/UserInfoSlice';
 import getUserDataSelector from '../../store/userInfo/UserInfoSelector';
@@ -12,18 +14,14 @@ import '../../style/reset.scss';
 import '../../style/common.scss';
 import './Menu.scss';
 
-interface IMenuProps {
-    userEmail: string,
-    isLogin: boolean,
-}
-
-function Menu ({userEmail = 'You are no login!'}: IMenuProps) {
+const Menu: FC = () => {
     const navigator = useNavigate();
-    const dispatch = useDispatchTyped();
-    const userData = useSelectorTyped(getUserDataSelector);
-    const isLogin = useSelectorTyped(getUserDataSelector).email;
+    const dispatch = useAppDispatch();
+    const userData = useAppSelector(getUserDataSelector);
+    const isLogin = useAppSelector(getUserDataSelector).email;
 
-    async function handleMenuAction () {
+    async function handleMenuAction (event: DisableMouseEventType) {
+        event.preventDefault();
         if(!isLogin) {
             return navigator('/authorization');
         }
@@ -65,6 +63,6 @@ function Menu ({userEmail = 'You are no login!'}: IMenuProps) {
             </div>
         </nav>
     );
-}
+};
 
 export default Menu;

@@ -1,12 +1,14 @@
-import { IReview } from '../../interfaces/pages/Main';
+import { FC } from 'react';
 
+import { IReviewListProps } from '../../interfaces/components/Props';
+import { IReview } from '../../interfaces/pages/Main';
 import Review from '../review/Review';
 
 import '../../style/reset.scss';
 import '../../style/common.scss';
 import './ReviewList.scss';
 
-function ReviewList (props: { reviews: IReview[]; elementCount: number; }) {
+const ReviewList: FC<IReviewListProps> = (props) => {
     const reviewsInfo = {
         reviews: props.reviews,
         elementCount: props.elementCount,
@@ -28,6 +30,6 @@ function ReviewList (props: { reviews: IReview[]; elementCount: number; }) {
             </ul>
         </div>
     );
-}
+};
 
 export default ReviewList;

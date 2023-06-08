@@ -8,4 +8,16 @@ interface IReview {
     author: number,
 }
 
-export type { IReview };
+type DisableMouseEventType = {
+    preventDefault: () => void
+}
+
+interface ISearchPageProps {
+    searchLine: string,
+}
+
+export type { 
+    IReview,
+    DisableMouseEventType,
+    ISearchPageProps,
+};

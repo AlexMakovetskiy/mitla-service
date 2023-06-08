@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import useDispatchTyped from '../../hooks/useDispatchTyped';
-import useSelectorTyped from '../../hooks/useSelectorTyped';
+import useAppDispatch from '../../hooks/useAppDispatch';
+import useAppSelector from '../../hooks/useAppSelector';
 
+import { DisableMouseEventType } from '../../interfaces/pages/Main';
 import Services from '../../components/services/Services';
 import Title from '../../components/title/Title';
 import ReviewList from '../../components/reviewList/ReviewList';
@@ -14,32 +15,35 @@ import '../../style/reset.scss';
 import '../../style/common.scss'; 
 import './Main.scss';
 
-
-function Main () {
-    const [roomCount, setRoomCount] = useState(0);
-    const [bathroomCountCount, setBathroomCountCount] = useState(0);
-    const dispatch = useDispatchTyped();
-    const loading = useSelectorTyped(reviewsLoadingSelector);
-    const reviews = useSelectorTyped(reviewListSelector);
+const Main: FC = () => {
+    const [roomCount, setRoomCount] = useState<number>(0);
+    const [bathroomCountCount, setBathroomCountCount] = useState<number>(0);
+    const dispatch = useAppDispatch();
+    const loading = useAppSelector(reviewsLoadingSelector);
+    const reviews = useAppSelector(reviewListSelector);
 
     useEffect(() => {
         dispatch(getReviews());
     }, [dispatch]);
 
-    function increaseRoomCount () {
+    function increaseRoomCount (event: DisableMouseEventType) {
+        event.preventDefault();
         return setRoomCount((prevState) => prevState + 1);
     }
 
-    function decreaseRoomCount () {
+    function decreaseRoomCount (event: DisableMouseEventType) {
+        event.preventDefault();
         if (roomCount !== 0)
             return setRoomCount(roomCount - 1);
     }
 
-    function increaseBathRoomCount () {
+    function increaseBathRoomCount (event: DisableMouseEventType) {
+        event.preventDefault();
         return setBathroomCountCount((prevState) => prevState + 1);
     }
 
-    function decreaseBathRoomCount () {
+    function decreaseBathRoomCount (event: DisableMouseEventType) {
+        event.preventDefault();
         if (bathroomCountCount !== 0)
             return setBathroomCountCount(bathroomCountCount - 1);
     }
@@ -100,6 +104,6 @@ function Main () {
             <Services/>
         </main>
     );
-}
+};
 
 export default Main;

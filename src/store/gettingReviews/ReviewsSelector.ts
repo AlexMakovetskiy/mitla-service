@@ -8,5 +8,4 @@ const reviewsLoadingSelector = (state: storeStateType) => {
     return state.ReviewListSlice.loading;
 };
 
-
 export { reviewListSelector, reviewsLoadingSelector };
