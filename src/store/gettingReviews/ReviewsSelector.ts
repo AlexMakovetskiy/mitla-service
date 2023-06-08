@@ -4,4 +4,8 @@ const reviewListSelector = (state: storeStateType) => {
     return state.ReviewListSlice.reviews;
 };
 
-export default reviewListSelector;
+const reviewsLoadingSelector = (state: storeStateType) => {
+    return state.ReviewListSlice.loading;
+};
+
+export { reviewListSelector, reviewsLoadingSelector };

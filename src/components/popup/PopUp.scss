@@ -1,3 +1,11 @@
+.popup-deactivated {
+    visibility: hidden;
+}
+
+.popup-activated {
+    visibility: visible;
+}
+
 .popup-box-container {
     position: fixed;
     background: #00000050;

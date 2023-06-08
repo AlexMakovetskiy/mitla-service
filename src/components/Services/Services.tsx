@@ -1,16 +1,18 @@
-import Title from '../title/Title';
+import { FC } from 'react';
+
+import Title from '../../ui/title/Title';
 
 import '../../style/reset.scss';
 import '../../style/common.scss';
 import './Services.scss';
 
-function Services () {
+const Services: FC = () => {
     return (
         <section className="services-container medium-container">
             <Title content="Our services" fontSize={48} fontWeight={700} lineHeight={60}/>
             <div className="services-content">
                 <div className="service-container">
-                    <img src="/assets/vector/services/cleaning.svg" alt="service logo" className="service-container__logo" />
+                    <img src="/assets/vector/services/cleaning.svg" alt="service logo" className="service-container__logo" data-testid="logo-standard-cleaning"/>
                     <p className="service-container__title">Standard cleaning</p>
                 </div>
                 <div className="service-container">
@@ -40,6 +42,6 @@ function Services () {
             </div>
         </section>
     );
-}
+};
 
 export default Services;

@@ -1,8 +1,9 @@
 import { useContext } from 'react';
 
-import { ThemeContext } from '../components/context/ThemeContext';
+import { ThemeHookType } from '../interfaces/components/Props';
+import { ThemeContext } from '../helpers/ThemeContext';
 
-const useTheme = () => {
+const useTheme: ThemeHookType = () => {
     return useContext(ThemeContext);
 };
 

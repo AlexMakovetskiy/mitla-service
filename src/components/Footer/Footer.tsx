@@ -1,16 +1,18 @@
-import { ADDRESS_MAPS_URL, PUBLIC_CONTRACT_URL, PRIVACY_POLICY_URL, POLICY_COOKIES_URL } from '../../helpers/Footer';
+import { FC } from 'react';
+
+import { ADDRESS_MAPS_URL, PUBLIC_CONTRACT_URL, PRIVACY_POLICY_URL, POLICY_COOKIES_URL } from '../../utils/Footer';
 
 import '../../style/reset.scss';
 import '../../style/common.scss';
 import './Footer.scss';
 
-function Footer () {
+const Footer: FC = () => {
     return (
         <footer className="footer-wrapper large-container">
             <div className="footer-content medium-container">
                 <div className="about">
                     <div className="requisites">
-                        <img className="requisites__logo" src="/assets/vector/footer/bank/logo__footer.svg" alt="logo company" />
+                        <img className="requisites__logo" src="/assets/vector/footer/bank/logo__footer.svg" alt="logo company" data-testid="requisites-logo"/>
                         <p className="requisites__title">Milta Sp. z o.o., <br /> KRS 0000868230,<br />NIP: 6751738063,<br />REGiON: 38745511400000
                         </p>
                         <div className="bank-cards">
@@ -69,6 +71,6 @@ function Footer () {
             </div>
         </footer>
     );
-}
+};
 
 export default Footer;

@@ -1,57 +1,52 @@
-import { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { PROJECT_BASE_URL } from '../../helpers/Main';
+import useAppDispatch from '../../hooks/useAppDispatch';
+import useAppSelector from '../../hooks/useAppSelector';
+
+import { DisableMouseEventType } from '../../interfaces/pages/Main';
 import Services from '../../components/services/Services';
-import Title from '../../components/title/Title';
+import Title from '../../ui/title/Title';
+import Loading from '../../ui/loading/Loading';
 import ReviewList from '../../components/reviewList/ReviewList';
-import { setReviewsData } from '../../store/gettingReviews/ReviewsSlice';
-import useDispatchTyped from '../../hooks/useDispatchTyped';
+import { getReviews } from '../../store/gettingReviews/ReviewsThunk';
+import { reviewsLoadingSelector, reviewListSelector } from '../../store/gettingReviews/ReviewsSelector';
 
 import '../../style/reset.scss'; 
 import '../../style/common.scss'; 
 import './Main.scss';
 
-
-function Main () {
-    const [roomCount, setRoomCount] = useState(0);
-    const [bathroomCountCount, setBathroomCountCount] = useState(0);
-    const [reviewArray, setReviewArray] = useState([]);
-    const dispatch = useDispatchTyped();
+const Main: FC = () => {
+    const [roomCount, setRoomCount] = useState<number>(0);
+    const [bathroomCountCount, setBathroomCountCount] = useState<number>(0);
+    const dispatch = useAppDispatch();
+    const loading = useAppSelector(reviewsLoadingSelector);
+    const reviews = useAppSelector(reviewListSelector);
 
     useEffect(() => {
-        const fetchReviews = async () => {
-            const response = await fetch(PROJECT_BASE_URL);
-            const reviews = await response.json();
-            dispatch(setReviewsData(reviews));
-            return setReviewArray(reviews);
-        };
-        fetchReviews();
-    });
+        dispatch(getReviews());
+    }, [dispatch]);
 
-
-    function increaseRoomCount () {
+    function increaseRoomCount (event: DisableMouseEventType) {
+        event.preventDefault();
         return setRoomCount((prevState) => prevState + 1);
     }
 
-    function decreaseRoomCount () {
+    function decreaseRoomCount (event: DisableMouseEventType) {
+        event.preventDefault();
         if (roomCount !== 0)
             return setRoomCount(roomCount - 1);
     }
 
-    function increaseBathRoomCount () {
+    function increaseBathRoomCount (event: DisableMouseEventType) {
+        event.preventDefault();
         return setBathroomCountCount((prevState) => prevState + 1);
     }
 
-    function decreaseBathRoomCount () {
+    function decreaseBathRoomCount (event: DisableMouseEventType) {
+        event.preventDefault();
         if (bathroomCountCount !== 0)
             return setBathroomCountCount(bathroomCountCount - 1);
-    }
-
-    if (!reviewArray.length) {
-        return (
-            <h1>loading</h1>
-        );
     }
 
     return (
@@ -65,8 +60,8 @@ function Main () {
                             <button className="decrease-room-count" onClick={decreaseRoomCount}>
                                 <img src="/assets/vector/order/calculation/decrease.svg" alt="decrease count" className="decrease-room-count__logo"/>
                             </button>
-                            <p className="rooms__title">{roomCount} room</p>
-                            <button className="increase-room-count" onClick={increaseRoomCount}>
+                            <p className="rooms__title" data-testid="rooms-title-test">{roomCount} room</p>
+                            <button className="increase-room-count" onClick={increaseRoomCount} data-testid="increase-room-count-action-test">
                                 <img src="/assets/vector/order/calculation/increase.svg" alt="increase count" className="increase-room-count__logo"/>
                             </button>
                         </div>
@@ -83,10 +78,19 @@ function Main () {
                     </div>
                 </div>
             </div>
+
             <div className="posts-wrap">
                 <Title content="Reviews" fontSize={70} fontWeight={700} lineHeight={76}/>
                 <div className="posts-container medium-container">
-                    <ReviewList reviews={reviewArray} elementCount={3}/>
+                    {
+                        !!loading ?
+                            <Loading/> :
+                            <ReviewList reviews={reviews} elementCount={3}/>
+                    }
+                    {
+                        !reviews.length &&
+                        <div>Results not found</div>
+                    }
                     <div className="action-kit">
                         <Link to={'/notfound'}>
                             <div className="action-kit__link action-kit__own-review">Leave your review →</div>
@@ -100,6 +104,6 @@ function Main () {
             <Services/>
         </main>
     );
-}
+};
 
 export default Main;

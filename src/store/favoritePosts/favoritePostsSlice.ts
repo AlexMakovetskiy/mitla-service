@@ -1,10 +1,7 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 import { IReview } from '../../interfaces/pages/Main';
-
-interface IFavoritePostsState {
-    favoritePosts: IReview[];
-}
+import { IFavoritePostsState } from '../types/store-types';
 
 const favoritePostInitialState: IFavoritePostsState = {
     favoritePosts: [],

@@ -4,6 +4,6 @@ import { store } from '../store';
 
 type DispatchTyped = typeof store.dispatch;
 
-const useDispatchTyped = () => useDispatch<DispatchTyped>();
+const useAppDispatch = () => useDispatch<DispatchTyped>();
 
-export default useDispatchTyped;
+export default useAppDispatch;

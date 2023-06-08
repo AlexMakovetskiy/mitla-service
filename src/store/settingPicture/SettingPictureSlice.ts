@@ -1,12 +1,9 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
-import { USER_PHOTO_BASE_USR } from '../../helpers/Review';
+import { IPictureInitialState } from '../types/store-types';
+import { USER_PHOTO_BASE_USR } from '../../utils/Review';
 
-interface IPictureState {
-    pictureSrc: string
-}
-
-const initialStatePicture = {
+const initialStatePicture: IPictureInitialState = {
     pictureSrc: USER_PHOTO_BASE_USR,
 };
 
@@ -14,7 +11,7 @@ const settingPictureSlice = createSlice({
     name: 'settingPicture',
     initialState: initialStatePicture,
     reducers: {
-        setPicture(state: IPictureState, action: PayloadAction<string>) {
+        setPicture(state: IPictureInitialState, action: PayloadAction<string>) {
             state.pictureSrc = action.payload;
         },
     },

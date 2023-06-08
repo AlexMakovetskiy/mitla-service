@@ -1,21 +1,20 @@
+import { FC } from 'react';
 import { useParams } from 'react-router-dom';
 
-import useSelectorTyped from '../../../hooks/useSelectorTyped';
+import useAppSelector from '../../../hooks/useAppSelector';
 
-import Title from '../../../components/title/Title';
+import Title from '../../../ui/title/Title';
 import Review from '../../../components/review/Review';
-import reviewListSelector from '../../../store/gettingReviews/ReviewsSelector';
+import { reviewListSelector } from '../../../store/gettingReviews/ReviewsSelector';
 
 import '../../../style/reset.scss'; 
 import '../../../style/common.scss';
 import './ReviewPage.scss';
 
-
-function ReviewPage () {
+const ReviewPage: FC = () => {
     const params = useParams();
-    const reviewList = useSelectorTyped(reviewListSelector);
+    const reviewList = useAppSelector(reviewListSelector);
     const currentUserData = reviewList.find(userData => userData.id === Number(params.id));
-
 
     return (
         <div className="review-page-wrap medium-container">
@@ -23,6 +22,6 @@ function ReviewPage () {
             <Review data={currentUserData}/>
         </div>
     );
-}
+};
 
 export default ReviewPage;

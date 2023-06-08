@@ -4,12 +4,14 @@ import popupSlice from './openPopup/PopupSlice';
 import settingPictureSlice from './settingPicture/SettingPictureSlice';
 import ReviewListSlice from './gettingReviews/ReviewsSlice';
 import favoritePostsSlice from './favoritePosts/favoritePostsSlice';
+import UserInfoSlice from './userInfo/UserInfoSlice';
 
 const reducers = combineReducers({
     popupSlice,
     settingPictureSlice,
     ReviewListSlice,
     favoritePostsSlice,
+    UserInfoSlice,
 });
 
 const store = configureStore({

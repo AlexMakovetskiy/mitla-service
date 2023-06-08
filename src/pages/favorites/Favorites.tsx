@@ -1,17 +1,18 @@
-import useSelectorTyped from '../../hooks/useSelectorTyped';
+import { FC } from 'react';
+
+import useAppSelector from '../../hooks/useAppSelector';
 
 import { IReview } from '../../interfaces/pages/Main';
-
 import Review from '../../components/review/Review';
-import Title from '../../components/title/Title';
+import Title from '../../ui/title/Title';
 import favoritePostsSelector from '../../store/favoritePosts/favoritePostsSelector';
 
 import '../../style/reset.scss';
 import '../../style/common.scss';
 import './Favorites.scss';
 
-function Favorites () {
-    const favoritePosts = useSelectorTyped(favoritePostsSelector);
+const Favorites: FC = () => {
+    const favoritePosts = useAppSelector(favoritePostsSelector);
 
     return (
         <main className="favorites-wrap">
@@ -36,6 +37,6 @@ function Favorites () {
             </section>
         </main>
     );
-}
+};
 
 export default Favorites;
