@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { IReview } from '../../interfaces/pages/Main';
-import { API_BASE_URL, API_REVIEWS_ENDPOINT } from '../../helpers/Main';
+import { API_BASE_URL, API_REVIEWS_ENDPOINT } from '../../utils/Main';
 
 export const getReviews = createAsyncThunk<IReview[], undefined>(
     'reviews',

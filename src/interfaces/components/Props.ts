@@ -20,6 +20,7 @@ interface IReviewProps {
 
 interface IPopUpProps {
     picture: string | undefined,
+    classTitle: string,
 }
 
 interface IFavoritePostActionProps {

@@ -2,7 +2,7 @@ import { FC } from 'react';
 
 import useAppSelector from '../../../hooks/useAppSelector';
 
-import Title from '../../../components/title/Title';
+import Title from '../../../ui/title/Title';
 import ReviewList from '../../../components/reviewList/ReviewList';
 import { reviewListSelector } from '../../../store/gettingReviews/ReviewsSelector';
 

@@ -23,11 +23,11 @@ const Header: FC = () => {
     const themeValue = theme?.handleTheme;
 
     return (
-        <header className="header-wrapper large-container">
-            <Link to={'/'}>
-                <img src="/assets/vector/header/mitla-logo.svg" alt="logo" className="header-wrapper__logo" />
+        <header className="header-wrapper large-container" data-testid="header-wrapper-container">
+            <Link to={'/'} data-testid="company-logo-header">
+                <img src="/assets/vector/header/mitla-logo.svg" alt="logo" className="header-wrapper__logo"/>
             </Link>
-            <button className="burger-action" onClick={themeValue}>
+            <button className="burger-action" onClick={themeValue} data-testid="theme-action-button">
                 <img className="burger-action__logo" src="/assets/vector/header/burger.svg" alt="logo"  />
             </button>
             <div className="contacts">
@@ -72,7 +72,7 @@ const Header: FC = () => {
                     <p className="service__title">Assistant housework</p>
                 </div>
             </div>
-            <Link to={'/search'}>
+            <Link to={'/search'} data-testid="search-btn-header">
                 <div className="search-link-wrap">
                     <img src="/assets/vector/header/loupe.svg" alt="loupe" className="search-link-wrap__logo"/>
                 </div>

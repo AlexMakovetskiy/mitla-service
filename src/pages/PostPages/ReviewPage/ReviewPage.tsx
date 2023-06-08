@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 
 import useAppSelector from '../../../hooks/useAppSelector';
 
-import Title from '../../../components/title/Title';
+import Title from '../../../ui/title/Title';
 import Review from '../../../components/review/Review';
 import { reviewListSelector } from '../../../store/gettingReviews/ReviewsSelector';
 

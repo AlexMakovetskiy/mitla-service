@@ -1,3 +1,5 @@
+import { ReactElement, ReactNode } from 'react';
+
 interface IReview {
     id: number,
     image: string,
@@ -16,8 +18,16 @@ interface ISearchPageProps {
     searchLine: string,
 }
 
+interface IWrapperReduxRouterProps {
+    children: ReactNode;
+}
+
+type AppWrapperType = ({children}: IWrapperReduxRouterProps) => ReactElement;
+
 export type { 
     IReview,
     DisableMouseEventType,
     ISearchPageProps,
+    IWrapperReduxRouterProps,
+    AppWrapperType,
 };

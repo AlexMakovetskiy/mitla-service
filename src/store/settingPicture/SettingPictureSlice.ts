@@ -1,7 +1,7 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 import { IPictureInitialState } from '../types/store-types';
-import { USER_PHOTO_BASE_USR } from '../../helpers/Review';
+import { USER_PHOTO_BASE_USR } from '../../utils/Review';
 
 const initialStatePicture: IPictureInitialState = {
     pictureSrc: USER_PHOTO_BASE_USR,

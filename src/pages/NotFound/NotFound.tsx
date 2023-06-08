@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import Title from '../../components/title/Title';
+import Title from '../../ui/title/Title';
 
 import '../../style/reset.scss'; 
 import '../../style/common.scss'; 

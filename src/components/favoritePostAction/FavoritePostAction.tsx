@@ -29,8 +29,8 @@ const FavoritePostAction: FC<IFavoritePostActionProps> = (props) => {
     
     return (
         <div className="favorite-post-wrap">
-            <button className={!isFavoritePost ? 'action-deactivated' : 'action-activated'} onClick={handleFavoriteAction}>
-                <img src="/assets/vector/addFavorite/redHeartLogo.svg" alt="heart logo" className="heart-logo"/>
+            <button className={!isFavoritePost ? 'action-deactivated' : 'action-activated'} onClick={handleFavoriteAction} data-testid="favorite-post-button-test">
+                <img src="/assets/vector/addFavorite/redHeartLogo.svg" alt="heart logo" className="heart-logo" data-testid="heart-logo-action-test"/>
             </button>
         </div>
     );

@@ -6,7 +6,8 @@ import useAppSelector from '../../hooks/useAppSelector';
 
 import { DisableMouseEventType } from '../../interfaces/pages/Main';
 import Services from '../../components/services/Services';
-import Title from '../../components/title/Title';
+import Title from '../../ui/title/Title';
+import Loading from '../../ui/loading/Loading';
 import ReviewList from '../../components/reviewList/ReviewList';
 import { getReviews } from '../../store/gettingReviews/ReviewsThunk';
 import { reviewsLoadingSelector, reviewListSelector } from '../../store/gettingReviews/ReviewsSelector';
@@ -48,16 +49,6 @@ const Main: FC = () => {
             return setBathroomCountCount(bathroomCountCount - 1);
     }
 
-    if (!!loading) {
-        return (
-            <h1>loading</h1>
-        );
-    }
-
-    if (!reviews.length) {
-        return <div>Results not found</div>;
-    }
-
     return (
         <main className="main-page large-container">
             <div className="order-wrapper large-container">
@@ -69,8 +60,8 @@ const Main: FC = () => {
                             <button className="decrease-room-count" onClick={decreaseRoomCount}>
                                 <img src="/assets/vector/order/calculation/decrease.svg" alt="decrease count" className="decrease-room-count__logo"/>
                             </button>
-                            <p className="rooms__title">{roomCount} room</p>
-                            <button className="increase-room-count" onClick={increaseRoomCount}>
+                            <p className="rooms__title" data-testid="rooms-title-test">{roomCount} room</p>
+                            <button className="increase-room-count" onClick={increaseRoomCount} data-testid="increase-room-count-action-test">
                                 <img src="/assets/vector/order/calculation/increase.svg" alt="increase count" className="increase-room-count__logo"/>
                             </button>
                         </div>
@@ -87,10 +78,19 @@ const Main: FC = () => {
                     </div>
                 </div>
             </div>
+
             <div className="posts-wrap">
                 <Title content="Reviews" fontSize={70} fontWeight={700} lineHeight={76}/>
                 <div className="posts-container medium-container">
-                    <ReviewList reviews={reviews} elementCount={3}/>
+                    {
+                        !!loading ?
+                            <Loading/> :
+                            <ReviewList reviews={reviews} elementCount={3}/>
+                    }
+                    {
+                        !reviews.length &&
+                        <div>Results not found</div>
+                    }
                     <div className="action-kit">
                         <Link to={'/notfound'}>
                             <div className="action-kit__link action-kit__own-review">Leave your review →</div>

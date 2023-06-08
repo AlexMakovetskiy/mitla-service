@@ -12,7 +12,7 @@ import { openPopup } from '../../store/openPopup/PopupSlice';
 import { setPicture } from '../../store/settingPicture/SettingPictureSlice';
 import openingPopupSelector from '../../store/openPopup/OpeningPopupSelector';
 import setPictureSelector from '../../store/settingPicture/SettingPictureSelector';
-import { USER_PHOTO_BASE_USR } from '../../helpers/Review';
+import { USER_PHOTO_BASE_USR } from '../../utils/Review';
 
 import '../../style/reset.scss';
 import '../../style/common.scss';
@@ -54,9 +54,9 @@ const Review: FC<IReviewProps> = (props) => {
         };
 
         return (
-            <div className="review-container">
+            <div className="review-container" data-testid="review-container-test">
                 <div className="post-data">
-                    <img src= {imageSource} alt="user" className="post-data__user-photo" onClick={openPreview}/>
+                    <img src= {imageSource} alt="user" className="post-data__user-photo" onClick={openPreview} data-testid="user-photo-test"/>
                     <div className="user-data">
                         <h3 className="user-data__name">{reviewInfo.title}</h3>
                         <Link to={`/review/${reviewInfo.id}`}>
@@ -66,10 +66,7 @@ const Review: FC<IReviewProps> = (props) => {
                     <FavoritePostAction postData={reviewInfo}/>
                 </div>
                 <p className="review-container__content">{reviewInfo.text}</p>
-                {
-                    !!isOpenPopup && 
-                    <PopUp picture={userPhoto}/>
-                }
+                <PopUp picture={userPhoto} classTitle={ !!isOpenPopup ? 'popup-activated' : 'popup-deactivated' }/>
             </div>
         );
     }

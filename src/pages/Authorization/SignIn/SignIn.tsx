@@ -6,7 +6,8 @@ import useAppSelector from '../../../hooks/useAppSelector';
 
 import { DisableMouseEventType } from '../../../interfaces/pages/Main';
 import { IDataState } from '../../../interfaces/pages/authorization';
-import Title from '../../../components/title/Title';
+import Title from '../../../ui/title/Title';
+import Loading from '../../../ui/loading/Loading';
 import { getUserInfo } from '../../../store/userInfo/UserInfoThunk';
 import getUserDataSelector from '../../../store/userInfo/UserInfoSelector';
 
@@ -52,11 +53,16 @@ const SignIn: FC = () => {
         dispatch(getUserInfo(accessData));
     }
 
+    if(!!loading)
+        return (
+            <Loading/>
+        );
+
     return (
         <section className="signin-wrap medium-container">
             <Title content="Sign in" fontSize="42" lineHeight="46" fontWeight="600" />
             <form action="/" className="user-data-wrap" >
-                <input type="text" name="email" className="user-data-wrap__email" placeholder="Email" onChange={handleChange} ref={emailFieldFocus}/>
+                <input type="text" name="email" className="user-data-wrap__email" placeholder="Email" onChange={handleChange} ref={emailFieldFocus} data-testid="signin-email"/>
                 <input type="password" name="password" className="user-data-wrap__password" placeholder="Password" onChange={handleChange}/>
                 <button className="user-data-wrap__signin-action" onClick={SignInAction}>Authorization</button>
             </form>
@@ -64,10 +70,6 @@ const SignIn: FC = () => {
                 <p className="signup-container__title">Have no account?</p>
                 <Link to={'/signup'} className="signup-container__link">Sign up</Link>
             </div>
-            {
-                !!loading && 
-                <h2>Loading...</h2>
-            }
         </section>
     );
 };

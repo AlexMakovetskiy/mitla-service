@@ -4,7 +4,7 @@ import useAppSelector from '../../hooks/useAppSelector';
 
 import { IReview } from '../../interfaces/pages/Main';
 import Review from '../../components/review/Review';
-import Title from '../../components/title/Title';
+import Title from '../../ui/title/Title';
 import favoritePostsSelector from '../../store/favoritePosts/favoritePostsSelector';
 
 import '../../style/reset.scss';

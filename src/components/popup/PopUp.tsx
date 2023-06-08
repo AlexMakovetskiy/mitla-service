@@ -22,12 +22,13 @@ const PopUp: FC<IPopUpProps> = (props) => {
     }
 
     return (
-        <div className="popup-box-container">
+        <div className={'popup-box-container ' + props.classTitle} data-testid="popup-box-test">
             <div className="popup-window-wrapper">
                 <img 
                     src={props.picture}
                     alt="logo" 
-                    className="popup-window-wrapper__logo" 
+                    className="popup-window-wrapper__logo"
+                    data-testid="logo-popup-element"
                 />
                 <button className="popup-window-wrapper__popup-action custom-btn" onClick={handleClosePopup}>cancel</button>
             </div>

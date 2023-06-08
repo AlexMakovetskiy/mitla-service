@@ -1,7 +1,5 @@
-import { Route,  Routes, BrowserRouter} from 'react-router-dom';
-import { Provider } from 'react-redux';
+import { Route,  Routes} from 'react-router-dom';
 
-import { ThemeProvider } from './components/context/ThemeContext';
 import Header from './components/header/Header';
 import Footer from './components/footer/Footer';
 import Main from './pages/main/Main';
@@ -14,7 +12,6 @@ import ReviewsPage from './pages/postPages/reviewsPage/ReviewsPage';
 import SearchPage from './pages/searchPage/SearchPage';
 import Favorites from './pages/favorites/Favorites';
 import NotFound from './pages/notFound/NotFound';
-import { store } from './store';
 
 import './style/reset.scss';
 import './style/common.scss';
@@ -22,28 +19,22 @@ import './App.scss';
 
 function App () {
     return (
-        <BrowserRouter>
-            <ThemeProvider>
-                <Provider store={store}>
-                    <div className="mitla-wrapper">
-                        <Header/>
-                        <Routes>
-                            <Route path="/" element={<Main/>}></Route>
-                            <Route path="/authorization" element={<SignIn/>}></Route>
-                            <Route path="/signup" element={<SignUp/>}></Route>
-                            <Route path="/menu" element={<Menu/>}></Route>
-                            <Route path="/success" element={<Success/>}></Route>
-                            <Route path="/allreviews" element={<ReviewsPage/>}></Route>
-                            <Route path="/review/:id" element={<ReviewPage/>}></Route>
-                            <Route path="/search" element={<SearchPage searchLine=""/>}></Route>
-                            <Route path="/favorites" element={<Favorites/>}></Route>
-                            <Route path="/*" element={<NotFound/>}></Route>
-                        </Routes>
-                        <Footer/>
-                    </div>
-                </Provider>
-            </ThemeProvider>
-        </BrowserRouter>
+        <div className="mitla-wrapper">
+            <Header/>
+            <Routes>
+                <Route path="/" element={<Main/>}></Route>
+                <Route path="/authorization" element={<SignIn/>}></Route>
+                <Route path="/signup" element={<SignUp/>}></Route>
+                <Route path="/menu" element={<Menu/>}></Route>
+                <Route path="/success" element={<Success/>}></Route>
+                <Route path="/allreviews" element={<ReviewsPage/>}></Route>
+                <Route path="/review/:id" element={<ReviewPage/>}></Route>
+                <Route path="/search" element={<SearchPage searchLine=""/>}></Route>
+                <Route path="/favorites" element={<Favorites/>}></Route>
+                <Route path="/*" element={<NotFound/>}></Route>
+            </Routes>
+            <Footer/>
+        </div>
     );
 }
 

@@ -5,10 +5,10 @@ import useAppSelector from '../../hooks/useAppSelector';
 import useAppDispatch from '../../hooks/useAppDispatch';
 
 import { DisableMouseEventType } from '../../interfaces/pages/Main';
-import Title from '../title/Title';
+import Title from '../../ui/title/Title';
 import { removeUserData } from '../../store/userInfo/UserInfoSlice';
 import getUserDataSelector from '../../store/userInfo/UserInfoSelector';
-import { API_BASE_URL, API_LOGOUT_ENDPOINT } from '../../helpers/Main';
+import { API_BASE_URL, API_LOGOUT_ENDPOINT } from '../../utils/Main';
 
 import '../../style/reset.scss';
 import '../../style/common.scss';
@@ -53,7 +53,7 @@ const Menu: FC = () => {
         <nav className="menu-background">
             <div className="menu-wrap">
                 <Title content="Menu" fontSize="28" lineHeight="30" fontWeight="500" />
-                <button className="menu-wrap__favorites-action" onClick={handleFavoritesLink}>Favorites</button>
+                <button className="menu-wrap__favorites-action" onClick={handleFavoritesLink} data-testid="favorites-action-test">Favorites</button>
                 <div className="user-data-container">
                     <p className="user-data-container__subtitle">{!!isLogin ? userData.email : 'You are no login!'}</p>
                     <button className="menu-action" onClick={handleMenuAction}>

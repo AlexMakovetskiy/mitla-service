@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { IUserResponseInfo } from '../types/store-types';
 import { IDataState } from '../../interfaces/pages/authorization';
-import { API_BASE_URL, API_LOGIN_ENDPOINT } from '../../helpers/Main';
+import { API_BASE_URL, API_LOGIN_ENDPOINT } from '../../utils/Main';
 
 export const getUserInfo = createAsyncThunk(
     'user/getInfo',
