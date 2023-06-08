@@ -4,7 +4,7 @@ import useSelectorTyped from '../../../hooks/useSelectorTyped';
 
 import Title from '../../../components/title/Title';
 import Review from '../../../components/review/Review';
-import reviewListSelector from '../../../store/gettingReviews/ReviewsSelector';
+import { reviewListSelector } from '../../../store/gettingReviews/ReviewsSelector';
 
 import '../../../style/reset.scss'; 
 import '../../../style/common.scss';
@@ -15,7 +15,6 @@ function ReviewPage () {
     const params = useParams();
     const reviewList = useSelectorTyped(reviewListSelector);
     const currentUserData = reviewList.find(userData => userData.id === Number(params.id));
-
 
     return (
         <div className="review-page-wrap medium-container">

@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { PROJECT_BASE_URL } from '../../helpers/Main';
+import useDispatchTyped from '../../hooks/useDispatchTyped';
+import useSelectorTyped from '../../hooks/useSelectorTyped';
+
 import Services from '../../components/services/Services';
 import Title from '../../components/title/Title';
 import ReviewList from '../../components/reviewList/ReviewList';
-import { setReviewsData } from '../../store/gettingReviews/ReviewsSlice';
-import useDispatchTyped from '../../hooks/useDispatchTyped';
+import { getReviews } from '../../store/gettingReviews/ReviewsThunk';
+import { reviewsLoadingSelector, reviewListSelector } from '../../store/gettingReviews/ReviewsSelector';
 
 import '../../style/reset.scss'; 
 import '../../style/common.scss'; 
@@ -16,19 +18,13 @@ import './Main.scss';
 function Main () {
     const [roomCount, setRoomCount] = useState(0);
     const [bathroomCountCount, setBathroomCountCount] = useState(0);
-    const [reviewArray, setReviewArray] = useState([]);
     const dispatch = useDispatchTyped();
+    const loading = useSelectorTyped(reviewsLoadingSelector);
+    const reviews = useSelectorTyped(reviewListSelector);
 
     useEffect(() => {
-        const fetchReviews = async () => {
-            const response = await fetch(PROJECT_BASE_URL);
-            const reviews = await response.json();
-            dispatch(setReviewsData(reviews));
-            return setReviewArray(reviews);
-        };
-        fetchReviews();
-    });
-
+        dispatch(getReviews());
+    }, [dispatch]);
 
     function increaseRoomCount () {
         return setRoomCount((prevState) => prevState + 1);
@@ -48,10 +44,14 @@ function Main () {
             return setBathroomCountCount(bathroomCountCount - 1);
     }
 
-    if (!reviewArray.length) {
+    if (!!loading) {
         return (
             <h1>loading</h1>
         );
+    }
+
+    if (!reviews.length) {
+        return <div>Results not found</div>;
     }
 
     return (
@@ -86,7 +86,7 @@ function Main () {
             <div className="posts-wrap">
                 <Title content="Reviews" fontSize={70} fontWeight={700} lineHeight={76}/>
                 <div className="posts-container medium-container">
-                    <ReviewList reviews={reviewArray} elementCount={3}/>
+                    <ReviewList reviews={reviews} elementCount={3}/>
                     <div className="action-kit">
                         <Link to={'/notfound'}>
                             <div className="action-kit__link action-kit__own-review">Leave your review →</div>

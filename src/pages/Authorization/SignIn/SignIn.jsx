@@ -53,7 +53,7 @@ function SignIn () {
                 <input type="password" name="password" className="user-data-wrap__password" placeholder="Password" onChange={handleChange}/>
                 <button className="user-data-wrap__signin-action" onClick={SignInAction}>Authorization</button>
             </form>
-            <div className="signup-conteiner">
+            <div className="signup-container">
                 <p className="signup-container__title">Have no account?</p>
                 <Link to={'/signup'} className="signup-container__link">Sign up</Link>
             </div>

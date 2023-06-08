@@ -1,7 +1,7 @@
 import useSelectorTyped from '../../../hooks/useSelectorTyped';
 import Title from '../../../components/title/Title';
 import ReviewList from '../../../components/reviewList/ReviewList';
-import reviewListSelector from '../../../store/gettingReviews/ReviewsSelector';
+import { reviewListSelector } from '../../../store/gettingReviews/ReviewsSelector';
 
 import '../../../style/reset.scss'; 
 import '../../../style/common.scss';
