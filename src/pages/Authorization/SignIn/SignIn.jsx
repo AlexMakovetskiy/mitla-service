@@ -1,7 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 
+import useDispatchTyped from '../../../hooks/useDispatchTyped';
+
 import Title from '../../../components/title/Title';
+import { setUserData } from '../../../store/userInfo/UserInfoSlice';
+import { API_BASE_URL, API_LOGIN_ENDPOINT } from '../../../helpers/Main';
 
 import '../../../style/reset.scss'; 
 import '../../../style/common.scss'; 
@@ -9,6 +13,7 @@ import './SignIn.scss';
 
 function SignIn () {
     const navigator = useNavigate();
+    const dispatch = useDispatchTyped();
     const [state, setState] = useState({
         email: '',
         password: '',
@@ -27,22 +32,34 @@ function SignIn () {
         }));
     }
 
-    function SignInAction (event) {
+    async function SignInAction (event) {
         event.preventDefault();
-        const storageUsers = JSON.parse(localStorage.getItem('mitla-users') || '[]');
-        if (!storageUsers.length)
-            return navigator('/notfaund');
-        for (const storageUser of storageUsers) {
-            if (storageUser.email === state.email && storageUser.password === state.password) {
-                const userData = {
-                    userEmail: state.email,
-                    isLogin: true,
-                };
-                localStorage.setItem('mitla-login', JSON.stringify(userData));
-                return navigator('/success'); 
-            }
+        try {
+            const accessData = {
+                email: state.email,
+                password: state.password,
+            };
+            const response = await fetch(`${API_BASE_URL}${API_LOGIN_ENDPOINT}`, {
+                method: 'POST',
+                body: JSON.stringify(accessData),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+            const userDataBd = await response.json();
+            if (!userDataBd) 
+                return navigator('/notfound');
+            const userDataFormed = {
+                email: userDataBd.user.email,
+                accessToken: userDataBd.accessToken,
+                refreshToken: userDataBd.refreshToken,
+                isActivated: userDataBd.user.isActivated,
+            };
+            dispatch(setUserData(userDataFormed));
+            return navigator('/success'); 
+        } catch (error) {
+            console.log(error);
         }
-        return navigator('/notfound');;
     }
 
     return (

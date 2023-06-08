@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { API_BASE_URL, API_REGISTRATION_ENDPOINT } from '../../../helpers/Main';
+
 import Title from '../../../components/title/Title';
 
 import '../../../style/reset.scss'; 
@@ -23,32 +25,41 @@ function SignUp () {
         }));
     }
 
-    function signUpAction (event: { preventDefault: () => void; }) {
+    async function signUpAction (event: { preventDefault: () => void; }) {
         event.preventDefault();
-        if (state.password !== state.confirmPassword) {
-            return navigator('/notfound');;
+        try {
+            if (state.password !== state.confirmPassword) {
+                return navigator('/notfound');
+            }
+            const userData = {
+                email: state.email,
+                password: state.password,
+            };
+            const response = await fetch(`${API_BASE_URL}${API_REGISTRATION_ENDPOINT}`, {
+                method: 'POST',
+                body: JSON.stringify(userData),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+            const userDataBd = await response.json();
+            if (!userDataBd) 
+                return navigator('/notfound');
+            return navigator('/authorization'); 
+        } catch (error) {
+            console.log(error);
         }
-        const storageUsers = JSON.parse(localStorage.getItem('mitla-users') || '[]');
-        if (storageUsers.length !== 0) {
-            storageUsers.push(state);
-            localStorage.setItem('mitla-users', JSON.stringify(storageUsers));
-            return navigator('/success'); 
-        }
-        const users= [];
-        users.push(state); 
-        localStorage.setItem('mitla-users', JSON.stringify(users));
-        return navigator('/authorization'); 
     }
 
     return (
         <section className="signup-wrap medium-container">
             <Title content="Sign Up" fontSize="42" lineHeight="46" fontWeight="600" />
-            <form action="/" className="user-data-wrap" >
+            <div className="user-data-wrap" >
                 <input type="text" name="email" className="user-data-wrap__email" placeholder="Email" onChange={handleChange}/>
                 <input type="password" name="password" className="user-data-wrap__password" placeholder="Password" onChange={handleChange}/>
                 <input type="password" name="confirmPassword" className="user-data-wrap__confirm-password" placeholder="Confirm password" onChange={handleChange}/>
                 <button className="user-data-wrap__signin-action" onClick={signUpAction}>Create an account</button>
-            </form>
+            </div>
         </section>
     );
 }
